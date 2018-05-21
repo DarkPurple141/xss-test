@@ -1,14 +1,31 @@
 #!/usr/bin/env python3
 
-import requests, verify
+import requests
+from . import verify
 
-PAYLOADS="<script>"
+PAYLOADS=[
+    "<script>alert(\"naive-xss\")</script>",
+    "<script src=\"naive-xss.js\"></script>",
+    "<img src=\"fake.x\" onerror=\"alert('img-onerror-xss')\">",
+    "<img src=\"xss.svg\">",
+    "<svg width=\"100px\" height=\"100px\" viewBox=\"0 0 100 100\"\
+         xmlns=\"http://www.w3.org/2000/svg\">\
+      <script>\
+        alert('direct-svg-xss')\
+      </script>\
+      <circle cx=\"50\" cy=\"50\" r=\"25\" fill=\"green\"/>\
+    </svg>",
+    "<embed src=\"xss.svg\" type=\"image/svg+xml\" />",
+    "<iframe src=\"xss.svg\" width=\"0\" height=\"0\"></iframe>",
+    "<object data=\"xss.svg\" type=\"image/svg+xml\"></object>"
+]
 
 class Injector(object):
     """Attemps to inject toy malicious payloads in website {domain}."""
     def __init__(self, config, payloads=PAYLOADS):
         super(Injector, self).__init__()
         self.domain     = config['domain']
+        self.payloads   = payloads
 
         # paths for injections
         self.post_paths = config['post']
@@ -23,15 +40,18 @@ class Injector(object):
                         config['auth']['path'],
                         config['auth']['creds']
                        )
-
     def run(self):
-        for path in self.get_paths:
-            verify.check(self.url, path, payloads)
-        print("hello")
+        self.inject()
+        self.verify()
+
+    def inject(self):
+        pass
+
+    def verify(self):
+        verify.check(self.session, self.domain, self.get_paths, self.payloads)
 
     @staticmethod
-    def authenticate(path, creds):
+    def authenticate(url, path, creds):
         session = requests.Session()
-        session.post(path, data=creds)
-
+        session.post("{}/{}".format(url, path), data=creds)
         return session

@@ -1,12 +1,12 @@
 {
-   "domain": "example.com",
+   "domain": "http://127.0.0.1:8000",
    "auth"  : {
-      "path": "/login",
+      "path": "login",
       "creds": {
          "username": "admin",
          "password": "admin"
       }
    },
-   "post": ["/posts"],
-   "get": ["/posts"]
+   "post": [""],
+   "get": [""]
 }

@@ -1,0 +1,12 @@
+{
+   "domain": "example.com",
+   "auth"  : {
+      "path": "/login",
+      "creds": {
+         "username": "admin",
+         "password": "admin"
+      }
+   },
+   "post": ["/posts"],
+   "get": ["/posts"]
+}

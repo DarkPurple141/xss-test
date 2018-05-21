@@ -1,5 +1,5 @@
 {
-   "domain": "http://127.0.0.1:8000",
+   "domain": "http://example.com",
    "auth"  : {
       "path": "login",
       "creds": {
@@ -7,6 +7,11 @@
          "password": "admin"
       }
    },
-   "post": [""],
+   "post": [
+      {
+         "field": ["post"],
+         "path" : "/"
+      }
+   ],
    "get": [""]
 }

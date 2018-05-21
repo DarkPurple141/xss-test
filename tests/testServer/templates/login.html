@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <title>Vulnerable Web App Login</title>
+  </head>
+  <body>
+     {% block content %}
+     <h1>Login</h1>
+     <form action="/login" method="post">
+        <input type="text"     name="username" value=""/>
+        <input type="password" name="password" value=""/>
+        <input type="submit"/>
+     </form>
+   {% endblock content %}
+  </body>
+</html>

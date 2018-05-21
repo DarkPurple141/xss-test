@@ -28,7 +28,7 @@ class Injector(object):
         self.payloads   = payloads
 
         # paths for injections
-        self.post_paths = config['post']
+        self.post_data = config['post']
 
         # paths for checking injections -- must match in length
         # don't need to be different
@@ -45,7 +45,7 @@ class Injector(object):
         self.verify()
 
     def inject(self):
-        syringe.inject(self.session, self.domain, self.post_paths, self.payloads)
+        syringe.inject(self.session, self.domain, self.post_data, self.payloads)
 
     def verify(self):
         verify.check(self.session, self.domain, self.get_paths, self.payloads)

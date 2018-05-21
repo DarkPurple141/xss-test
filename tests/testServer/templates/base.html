@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <title>Vulnerable Web App</title>
+  </head>
+  <body>
+     {% block content %}
+     <h1>{{ user }}</h1>
+     <ul>
+      {% for post in posts %}
+         {% autoescape false %}
+         <li>{{ post }}</li>
+         {% endautoescape %}
+      {% endfor %}
+     </ul>
+   {% endblock content %}
+  </body>
+</html>

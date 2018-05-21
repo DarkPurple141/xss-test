@@ -1,5 +1,5 @@
 {
-   "domain": "http://example.com",
+   "domain": "http://127.0.0.1:9447",
    "auth"  : {
       "path": "login",
       "creds": {

@@ -26,7 +26,6 @@ def main():
         with open("config.json","r") as r:
             config = json.load(r)
 
-    print(config)
     app = core.Injector(config)
     app.run()
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import core, json, sys
+import core, json
+from sys import argv, exit
 
 def use_cli(args):
     # actually parse this in future
@@ -11,7 +12,7 @@ def use_cli(args):
         print("Usage: ./xss.py -d [domain] -u [username] -p [password] -paths [,seperated path]")
         print("Help screen ->")
         print("Usage: ./xss.py --help")
-        sys.exit(0)
+        exit(0)
     # TODO make this actually parse things
     config = {'domain': 'example.com',
               'auth': {'username': 'admin', 'password': 'admin'},
@@ -20,8 +21,8 @@ def use_cli(args):
 
 def main():
 
-    if len(sys.argv) > 1:
-        config = use_cli(sys.argv)
+    if len(argv) > 1:
+        config = use_cli(argv)
     else:
         with open("config.json","r") as r:
             config = json.load(r)
